@@ -9,7 +9,7 @@ import rootReducer from './redux/reducers'; // imports ./redux/reducers/index.js
 import rootSaga from './redux/sagas'; // imports ./redux/sagas/index.js
 
 import './index.css';
-import App from './App';
+import App from './components/App/App'
 
 
 
