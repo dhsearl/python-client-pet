@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 
-const owners = (state =[],action ) =>{
+const owners = (state =[{}],action ) =>{
     if (action.type ==='SET_OWNERS'){
         return action.payload
     } 

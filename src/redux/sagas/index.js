@@ -3,27 +3,29 @@ import axios from 'axios'
 
 function* addOwnerSaga(action) {
     try {
-        yield axios.post(`/owners`, action.payload)
+        yield axios.post(`/owner/`, action.payload)
+        yield put({type:'FETCH_OWNER'})
     }
     catch{
-        console.log("Error in post");
+        console.log("Error in POST");
     }
 }
 function* fetchOwnerSaga() {
     try {
-        const owners = yield axios.get(`/owners`)
-        yield put({ type: "SET_OWNERS", payload: owners })
+        const owners = yield axios.get(`/pets/`) // FIX THIS
+        yield put({ type: "SET_OWNERS", payload: owners.data })
     }
     catch{
-        console.log("Error in get");
+        console.log("Error in GET");
     }
 }
 function* deleteOwnerSaga(action) {
     try {
-        yield axios.delete(`/owners/id=${action.payload.owner_id}`)
+        yield axios.delete(`/owner/?id=${action.payload}`)
+        yield put({type:'FETCH_OWNER'})
     }
     catch{
-        console.log("Error in get");
+        console.log("Error in DELETE");
     }
 }
 
