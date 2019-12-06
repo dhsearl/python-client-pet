@@ -28,9 +28,31 @@ function* deleteOwnerSaga(action) {
         console.log("Error in DELETE");
     }
 }
+function* addPetSaga(action) {
+    try {
+        yield axios.post(`/pets/`, action.payload)
+        yield put({type:'FETCH_PETS'})
+    }
+    catch{
+        console.log("Error in add pets POST");
+    }
+}
+function* fetchPetsSaga() {
+    try {
+        console.log("in FETCH PETS");
+        
+        const pets = yield axios.get(`/pets/`)
+        yield put ({ type: 'SET_PETS', payload: pets.data})
+    }
+    catch{
+        console.log("error in GET pets");
+    }
+}
 
 
 function* rootSaga() {
+    yield takeEvery('ADD_PET', addPetSaga);
+    yield takeEvery('FETCH_PETS', fetchPetsSaga);
     yield takeEvery('ADD_OWNER', addOwnerSaga);
     yield takeEvery('FETCH_OWNER', fetchOwnerSaga);
     yield takeEvery('DELETE_OWNER', deleteOwnerSaga);
