@@ -13,6 +13,12 @@ class Owners extends Component {
     handleSubmit = () => {
         this.props.dispatch({ type: "ADD_OWNER", payload: this.state })
     }
+    handleDelete = (owner_id) =>{
+        this.props.dispatch({type:'DELETE_OWNER', payload: owner_id})
+    }
+    componentDidMount(){
+        this.props.dispatch({ type: "FETCH_OWNER"})
+    }
     render() {
         return (
             <>
@@ -41,11 +47,12 @@ class Owners extends Component {
                             </tr>
                         </thead>
                         <tbody>
-                            {this.props.owners.map((each, index) => 
+                            {this.props.owners[0] &&
+                            this.props.owners.map((each, index) => 
                         <tr key={index}>
                             <td>{each.id}</td>
                             <td>{each.name}</td>
-                            <td>{each.pet_count}</td>
+                            {/* <td>{each.pet_count}</td> */}
                             <td><button 
                             onClick={()=>{
                                 this.handleDelete(each.id)
