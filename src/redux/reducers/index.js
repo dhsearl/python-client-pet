@@ -6,9 +6,16 @@ const owners = (state =[{}],action ) =>{
     } 
     else return state
 }
+const pets = (state =[], action) => {
+    if (action.type ==='SET_PETS'){
+        return action.payload
+    }
+    else return state
+}
 
 const rootReducer = combineReducers({
     owners,
+    pets,
 });
 
 export default rootReducer;
