@@ -12,7 +12,7 @@ function* addOwnerSaga(action) {
 }
 function* fetchOwnerSaga() {
     try {
-        const owners = yield axios.get(`/pets/`) // FIX THIS
+        const owners = yield axios.get(`/owner/`) 
         yield put({ type: "SET_OWNERS", payload: owners.data })
     }
     catch{
